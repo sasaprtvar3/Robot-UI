@@ -26,7 +26,6 @@ class Control {
   turnRight(){
     return 'turnRight'
   }
-
 }
 
 module.exports = Control;
