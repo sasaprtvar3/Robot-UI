@@ -12,28 +12,42 @@ app.get('/', function (req, res) {
  * below are the routes that control the movement of the robot
  * the robot has 5 states (forward, back, left, right, and stop)
  */
-app.get('/back', function (req, res){
+app.get('/moveBackward', function (req, res){
 
-    res.send('move bot backwards');
+    let controls = new control;
+    controls = controls.moveBackward();
+    res.send(controls);
     console.log('bot is moving backwards');
 })
-app.get('/forward', function (req, res){
-    res.send('move bot forward');
+app.get('/moveForward', function (req, res){
+
+    let controls = new control;
+    controls = controls.moveForward();
+    res.send(controls);
     console.log('bot is moving forward');
 })
 
-app.get('/left', function (req, res){
-    res.send('turn bot left');
+app.get('/turnLeft', function (req, res){
+
+    let controls = new control;
+    controls = controls.turnLeft();
+    res.send(controls);
     console.log('bot is turning left');
 })
 
-app.get('/right', function (req, res){
-    res.send('turn bot right');
+app.get('/turnRight', function (req, res){
+
+    let controls = new control;
+    controls = controls.turnRight();
+    res.send(controls);
     console.log('bot is turning right');
 })
-app.get('/stop', function (req, res){
-    res.send('the bot is stopped');
-    console.log('bot is not moving');
+app.get('/stopMovement', function (req, res){
+
+    let controls = new control;
+    controls = controls.stopMovement();
+    res.send(controls);
+    console.log('bot is stopping movement');
 })
 
 /**
