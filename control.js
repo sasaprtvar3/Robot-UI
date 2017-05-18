@@ -2,29 +2,31 @@
  * Created by Elijah McClendon on 5/17/17.
  */
 
-export default class Control {
+class Control {
   constructor(){
 
   }
 
   moveBackward(){
-    console.log('moveBackward')
+    return 'moveBackward'
   }
 
   moveForward(){
-    console.log('moveForward')
+    return 'moveForward'
   }
 
   stopMovement(){
-    console.log('stopMovement')
+    return 'stopMovement'
   }
 
   turnLeft(){
-    console.log('turnLeft')
+    return 'turnLeft'
   }
 
   turnRight(){
-    console.log('turnRight')
+    return 'turnRight'
   }
 
 }
+
+module.exports = Control;
