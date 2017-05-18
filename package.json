@@ -7,6 +7,7 @@
     "bleno": "^0.4.2",
     "express": "^4.15.3",
     "noble": "^1.8.1",
+    "noble-device": "^1.4.1",
     "node": "0.0.0"
   },
   "devDependencies": {},
