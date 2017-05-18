@@ -1,4 +1,4 @@
-function goUp(){
+function goFoward(){
     console.log(Go Up!);
 }
 
