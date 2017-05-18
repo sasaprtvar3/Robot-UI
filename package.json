@@ -11,7 +11,8 @@
     "global": "^4.3.2",
     "noble": "^1.8.1",
     "noble-device": "^1.4.1",
-    "node": "0.0.0"
+    "node": "0.0.0",
+    "nodemon": "^1.11.0"
   },
   "devDependencies": {},
   "scripts": {
