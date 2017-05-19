@@ -4,18 +4,24 @@
     <head>
         <meta charset="UTF-8">
         <title>Robot-UI-5-17-17</title>
-
-
+        <style>
+            button { width: 10%; height: 20%; color : red; background-color:rgb(167, 182, 220);}
+            span { font-size: 300%;}
+            .center {position: fixed; top: 50%; left: 25%; width: 100%;}
+        </style>
+        <script src="functions.js"></script>
     </head>
 
     <body>
-
-
-
-
-
-
-
+        <h1>Robot Controls:</h1>
+        <div class="center">
+            <button onclick="goFoward()"><span>&#8679</span></button>
+            <button onclick="goBack()"><span>&#8681</span></button>
+            <button onclick="turnRight()"><span>&#8680</span></button>
+            <button onclick="turnLeft()"><span>&#8678</span></button>
+            <button onclick="stop()"><span>&#9936</span></button>
+        </div>
+       
     </body>
 
 </html>
