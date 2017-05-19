@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-const control = require('./control.js');  //ES6 import replaces the require statement
+const control = require('./control.js');
+const noble = require('noble');
 
 
 app.get('/', function (req, res) {
   res.send('checking to see if localhost works');
-})
+});
 
 
 /**
@@ -18,14 +19,15 @@ app.get('/moveBackward', function (req, res){
     controls = controls.moveBackward();
     res.send(controls);
     console.log('bot is moving backwards');
-})
+});
+
 app.get('/moveForward', function (req, res){
 
     let controls = new control;
     controls = controls.moveForward();
     res.send(controls);
     console.log('bot is moving forward');
-})
+});
 
 app.get('/turnLeft', function (req, res){
 
@@ -33,7 +35,7 @@ app.get('/turnLeft', function (req, res){
     controls = controls.turnLeft();
     res.send(controls);
     console.log('bot is turning left');
-})
+});
 
 app.get('/turnRight', function (req, res){
 
@@ -48,7 +50,7 @@ app.get('/stopMovement', function (req, res){
     controls = controls.stopMovement();
     res.send(controls);
     console.log('bot is stopping movement');
-})
+});
 
 /**
  * listens on localhost:3000 
@@ -56,4 +58,4 @@ app.get('/stopMovement', function (req, res){
 
 app.listen(3000, function () {
   console.log('running on port 3000');
-})
+});
