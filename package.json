@@ -10,6 +10,7 @@
     "bleno": "^0.4.2",
     "express": "^4.15.3",
     "global": "^4.3.2",
+    "http-server": "^0.10.0",
     "noble": "^1.8.1",
     "noble-device": "^1.4.1",
     "node": "0.0.0",
@@ -19,7 +20,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel index.js -o compiled.js",
-    "start": "nodemon index.js",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
