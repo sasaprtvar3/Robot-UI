@@ -57,3 +57,11 @@ yarn.lock
 
 # dotenv environment variables file
 .env
+jsLibraryMappings.xml
+modules.xml
+misc.xml
+Robot-UI.iml
+watcherTasks.xml
+vcs.xml
+workspace.xml
+Project_Default.xml
