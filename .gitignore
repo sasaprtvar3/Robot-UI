@@ -65,3 +65,6 @@ watcherTasks.xml
 vcs.xml
 workspace.xml
 Project_Default.xml
+.xml
+.iml
+.idea
