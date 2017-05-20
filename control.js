@@ -36,7 +36,6 @@ class Control {
         noble.stopScanning();
       }
     });
-
   }
 
 }
