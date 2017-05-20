@@ -1,19 +1,19 @@
 function goFoward(){
-    console.log(Go Up!);
+    console.log('Go Forward!');
 }
 
 function goBack(){
-    console.log(Go Back!);
+    console.log('Go Back!');
 }
 
 function turnRight(){
-    console.log(Turn Right!);
+    console.log('Turn Right!');
 }
 
 function turnLeft(){
-    console.log(Turn Left!);
+    console.log('Turn Left!');
 }
 
 function stop(){
-    console.log(Stop!);
+    console.log('Stop!');
 }
