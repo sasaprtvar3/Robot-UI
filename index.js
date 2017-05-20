@@ -17,7 +17,7 @@ app.get('/moveBackward', function (req, res){
 
     let controls = new control;
     controls = controls.moveBackward();
-    res.send(controls);
+    res.send({ status:0, action: 'move backwards'});
     console.log('bot is moving backwards');
 });
 
@@ -25,7 +25,7 @@ app.get('/moveForward', function (req, res){
 
     let controls = new control;
     controls = controls.moveForward();
-    res.send(controls);
+    res.send({ status:0, action: 'move forward'});
     console.log('bot is moving forward');
 });
 
@@ -33,7 +33,7 @@ app.get('/turnLeft', function (req, res){
 
     let controls = new control;
     controls = controls.turnLeft();
-    res.send(controls);
+    res.send({ status:0, action: 'turns left'});
     console.log('bot is turning left');
 });
 
@@ -41,14 +41,14 @@ app.get('/turnRight', function (req, res){
 
     let controls = new control;
     controls = controls.turnRight();
-    res.send(controls);
+    res.send({ status:0, action: 'turns right'});
     console.log('bot is turning right');
 })
 app.get('/stopMovement', function (req, res){
 
     let controls = new control;
     controls = controls.stopMovement();
-    res.send(controls);
+    res.send({ status:0, action: 'stops bot from moving'});
     console.log('bot is stopping movement');
 });
 

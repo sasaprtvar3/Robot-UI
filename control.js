@@ -9,7 +9,8 @@ class Control {
   }
 
   moveBackward(){
-    return 'moveBackward';
+  
+    return 'moveBackward' ;
   }
 
   moveForward(){
