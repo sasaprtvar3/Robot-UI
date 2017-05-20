@@ -1,66 +1,37 @@
-/**
- * Created by Elijah McClendon on 5/17/17.
- */
+import ble from './ble-connection';
 const noble = require('noble');
+
 
 class Control {
   constructor(){
-
+    this.ble = new ble();
+    this.ble.conn('7ea8eb7239f64713831524a58aae8df5').then(() => {
+      console.log('anything');
+    });
   }
 
   moveBackward(){
-  let promise = new Promise((resolve, reject) => {
-    setTimeout(function(){
-      resolve("my promise is working correctly");
-    }, 3000)    
-  })
-  return promise;
+    return this.ble.send('MB');
   }
 
   moveForward(){
-    let promise = new Promise((resolve, reject) => {
-      setTimeout(function(){
-        resolve("my promise is working correctly");
-      }, 2000)
-    })
-    return promise;
+    return this.ble.send('MF');
   }
 
   stopMovement(){
-    let promise = new Promise((resolve, reject) => {
-      setTimeout(function(){
-        resolve("my promise is working correctly");
-      }, 2000)
-    })
-    return promise;
+    return this.ble.send('MS');
   }
 
   turnLeft(){
-    let promise = new Promise((resolve, reject) => {
-      setTimeout(function(){
-        resolve("my promise is working correctly");
-      }, 2000)
-    })
-    return promise;
+    return this.ble.send('ML');
   }
 
   turnRight(){
-    let promise = new Promise((resolve, reject) => {
-      setTimeout(function(){
-        resolve("my promise is working correctly");
-      }, 2000)
-    })
-    return promise;
+    return this.ble.send('MR');
   }
 
-  scanForDevices(){
-    noble.on('stateChange', function(state) {
-      if (state === 'poweredOn') {
-        noble.startScanning();
-      } else {
-        noble.stopScanning();
-      }
-    });
+  light(color, off){
+    return this.ble.send('L' + color.toUpperCase() + (!off ? '0':'1'));
   }
 
 }

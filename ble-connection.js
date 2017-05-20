@@ -1,7 +1,7 @@
 
 let noble = require('noble');
 
-class BT {
+export default class BT {
   constructor(){
     this.nobleState = false;
     this.connected = false;
@@ -70,7 +70,7 @@ class BT {
   }
 
   send(color) {
-    console.log('here');
+    console.log('here', this);
     let vm = this;
     if (this.char) {
       return new Promise((resolve, reject) => {
@@ -96,7 +96,7 @@ class BT {
           vm.char.discoverCharacteristics(['FF01'], (error, char) => {
 
             let blueOff = Buffer.from(color, 'UTF-8');
-            console.log(blueOff);
+            console.log(blueOff.toString(), 'someText');
             char[0].write(blueOff, false);
             resolve();
           });
@@ -105,6 +105,7 @@ class BT {
     });
   }
 }
+
 
 // let bt = new BT;
 // bt.conn('7ea8eb7239f64713831524a58aae8df5').then(() => {
