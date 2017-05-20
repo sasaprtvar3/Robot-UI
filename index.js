@@ -8,48 +8,72 @@ app.get('/', function (req, res) {
   res.send('checking to see if localhost works');
 });
 
-
+app.use(express.static(__dirname));
 /**
- * below are the routes that control the movement of the robot
- * the robot has 5 states (forward, back, left, right, and stop)
+ * when moveBackward is accessed from the URL the robot will move backwards
  */
-app.get('/moveBackward', function (req, res){
+app.get('/moveBackwards', function (req, res){  //express get request
 
-    let controls = new control;
-    controls = controls.moveBackward();
-    res.send(controls);
-    console.log('bot is moving backwards');
+    let controls = new control;       //grabs the control library
+    let p = controls.moveBackward();  //calls the moveBackward method in controls
+    p.then((successMessage) => {      //executes the promise returned from moveBackward
+        console.log(successMessage);  //successMessage contains the succesfully resolved promise
+        res.send({ status:0, action: 'move backwards'});  // sends a JSON object to the html
+
+    }).catch((error) => {   // if the promise fails it calls this function
+        throw 'move backwards promise failed';  // throws an exception
+    })
 });
 
 app.get('/moveForward', function (req, res){
 
     let controls = new control;
-    controls = controls.moveForward();
-    res.send(controls);
-    console.log('bot is moving forward');
+    let p = controls.moveForward();
+    p.then((successMessage) => {
+        console.log(successMessage);
+        res.send({ status:0, action: 'move forward'});
+
+    }).catch((error) => {
+        throw 'move forwards promise failed';
+    })  
 });
 
 app.get('/turnLeft', function (req, res){
 
     let controls = new control;
-    controls = controls.turnLeft();
-    res.send(controls);
-    console.log('bot is turning left');
+    let p = controls.turnLeft();
+    p.then((successMessage) => {
+        console.log(successMessage);
+        res.send({status: 0, action: 'turn left'});
+    }).catch((error) => {
+        throw "turn left promise errored";
+    })
 });
 
 app.get('/turnRight', function (req, res){
 
     let controls = new control;
-    controls = controls.turnRight();
-    res.send(controls);
-    console.log('bot is turning right');
+    p = controls.turnRight();
+    p.then((successMessage) => {
+        console.log(successMessage);
+        res.send({ status:0, action: 'turns right'});
+
+    }).catch((error) => {
+        throw "turn right promise errored";
+    })
 })
+
 app.get('/stopMovement', function (req, res){
 
     let controls = new control;
-    controls = controls.stopMovement();
-    res.send(controls);
-    console.log('bot is stopping movement');
+    p = controls.stopMovement();
+    p.then((successMessage) => {
+        console.log(successMessage);
+        res.send({ status:0, action: 'stops movement'});
+
+    }).catch((error) => {
+        throw "stop movement promise error";
+    })
 });
 
 /**

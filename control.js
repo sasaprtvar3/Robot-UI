@@ -9,23 +9,48 @@ class Control {
   }
 
   moveBackward(){
-    return 'moveBackward';
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(function(){
+      resolve("my promise is working correctly");
+    }, 3000)    
+  })
+  return promise;
   }
 
   moveForward(){
-    return 'moveForward'
+    let promise = new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve("my promise is working correctly");
+      }, 2000)
+    })
+    return promise;
   }
 
   stopMovement(){
-    return 'stopMovement'
+    let promise = new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve("my promise is working correctly");
+      }, 2000)
+    })
+    return promise;
   }
 
   turnLeft(){
-    return 'turnLeft'
+    let promise = new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve("my promise is working correctly");
+      }, 2000)
+    })
+    return promise;
   }
 
   turnRight(){
-    return 'turnRight'
+    let promise = new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve("my promise is working correctly");
+      }, 2000)
+    })
+    return promise;
   }
 
   scanForDevices(){
