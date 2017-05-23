@@ -1,27 +1,67 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Robot-UI-5-17-17</title>
-        <style>
-            button { width: 10%; height: 20%; color : red; background-color:rgb(167, 182, 220);}
-            span { font-size: 300%;}
-            .center {position: fixed; top: 50%; left: 25%; width: 100%;}
-        </style>
-        <script src="functions.js"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Robot-UI-5-17-17</title>
+    <style>
+        body{
+            background-image: url(https://images5.alphacoders.com/618/thumb-350-618287.jpg);
+            background-size:100%;
 
-    <body>
-        <h1>Robot Controls:</h1>
-        <div class="center">
-            <button onclick="robo('Forward')"><span>&#8679</span></button>
-            <button onclick="robo('Back')"><span>&#8681</span></button>
-            <button onclick="robo('Right')"><span>&#8680</span></button>
-            <button onclick="robo('Left')"><span>&#8678</span></button>
-            <button onclick="robo('Stop')"><span>&#9936</span></button>
-        </div>
-       
-    </body>
+
+        }
+        h1.italic {
+            text-align: center;
+            color:rgb(244,197,7);
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 100px;
+        }
+        
+        button {
+            width: 10%;
+            height: 20%;
+            border: none;
+            color:darkgreen;
+            background-color: rgb(224, 68, 11);
+            opacity: 0.7;
+
+        }
+        .instructions{
+            position: fixed;
+            top: 60%;
+            left: 38%;
+            width: 100%;
+            color:rgb(242, 207, 171);
+         }
+        span {
+            font-size: 300%;
+            
+        }
+        .center {
+            position: fixed;
+            border-style: none;
+            top: 50%;
+            left: 25%;
+            width: 100%;
+        }
+    </style>
+    <script src="functions.js"></script>
+</head>
+
+<body>
+    <h1 class="italic">Robot Controls:</h1>
+    <div class="center">
+        <button onclick="robo('Forward')"><span>&#8679</span></button>
+        <button onclick="robo('Back')"><span>&#8681</span></button>
+        <button onclick="robo('Right')"><span>&#8680</span></button>
+        <button onclick="robo('Left')"><span>&#8678</span></button>
+        <button onclick="robo('Stop')"><span>&#9936</span></button>
+    </div>
+    <div class = "instructions">
+        <h2>Click Arrow Buttons to Move Robot!</h2>
+    </div>
+</body>
 
 </html>
