@@ -57,10 +57,10 @@ export default class BT {
   }
 
   disconn(){
-    return this._checkState().then((id) => {
+    return this._checkState().then(() => {
       return new Promise ((resolve, reject) => {
         this.peripheral = peripheral;
-        this.peripheral.connect((err) => {
+        this.peripheral.disconnect((err) => {
           if(err){return reject(err)}
           resolve(console.log('disconnecting from ' + id))
         });
@@ -78,7 +78,7 @@ export default class BT {
           console.log('here2');
           let blueOff = Buffer.from(color, 'UTF-8');
           console.log(blueOff);
-          char[0].write(blueOff, false);
+          vm.char[0].write(blueOff, false);
           resolve();
         });
       });

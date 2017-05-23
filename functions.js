@@ -10,6 +10,10 @@ function ajax(Link) {
     xhttp.send();
 }
 
+let green = false;
+let blue = false;
+let red = false;
+
 function robo(booyah) {
     console.log(booyah);
     switch (booyah) {
@@ -17,7 +21,7 @@ function robo(booyah) {
             ajax('/moveForward');
             break;
         case 'Back':
-            ajax('/moveBackwards');
+            ajax('/moveBackward');
             break;
         case 'Right':
             ajax('/turnRight');
@@ -28,6 +32,18 @@ function robo(booyah) {
         case 'Stop':
             ajax('/stopMovement');
             break;
+        case 'Green':
+          green = !green;
+          ajax('/light/green/'+ (green ? 'on' : 'off'));
+          break;
+        case 'Blue':
+          blue = !blue;
+          ajax('/light/blue/'+ (blue ? 'on' : 'off'));
+          break;
+        case  'Red':
+          red = !red;
+          ajax('/light/red/'+ (red ? 'on' : 'off'));
+        break;
     }
 };
 
