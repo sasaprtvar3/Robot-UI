@@ -45,13 +45,12 @@
             left: 25%;
             width: 100%;
         }
-    </style>    
-        <script src="functions.js">
-    </script>
+    </style>  
 </head>
     <body>
         <h1>Robot Controls:</h1>
         <div id="buttons">
+            <!--button id="green">GREEN</button "for Javascript light change"-->
             <button onmousedown="robo('Green', 1)", onmouseup="robo('Green')">GREEN</button>
             <button onmousedown="robo('Blue', 1)", onmouseup="robo('Blue')">BLUE</button>
             <button onmousedown="robo('Red', 1)", onmouseup="robo('Red')">RED</button>
@@ -68,5 +67,8 @@
             <button onmouseup="robo('Stop')", onmouseup="robo('Stop')">
                 <span>&#9936</span></button>
         </div>
+        <script src="functions.js">
+
+    </script>
     </body>
 </html>

@@ -6,7 +6,7 @@ function ajax(Link) {
             console.log(x.A);
         }
     };
-    console.log('http://10.1.12.19' + Link);
+    
     xhttp.open('GET', 'http://10.1.12.19' + Link, true);
     xhttp.send();
 }
@@ -15,27 +15,27 @@ let green = false;
 let blue = false;
 let red = false;
 
-function robo(booyah, on) {
+function robo(booyah, on) {   //... , on) to make new param 
     console.log(booyah);
     switch (booyah) {
         case 'Forward':
-            ajax('/moveForward');
+            ajax('/motor/forward');
             break;
         case 'Back':
-            ajax('/moveBackward');
+            ajax('/motor/backward');
             break;
         case 'Right':
-            ajax('/turnRight');
+            ajax('/motor/right');
             break;
         case 'Left':
-            ajax('/turnLeft');
+            ajax('/motor/left');
             break;
         case 'Stop':
-            ajax('/stopMovement');
+            ajax('/motor/stop');
             break;
         case 'Green':
           green = !green;
-          ajax('/light/green/'+ (on ? 'on' : 'off'));
+          ajax('/light/green/'+ (on ? 'on' : 'off')); //colors = 'green' to make work
           break;
         case 'Blue':
           blue = !blue;
@@ -47,3 +47,12 @@ function robo(booyah, on) {
         break;
     }
 };
+// var BTN = document.querySelector('#green') 
+// BTN.onmousedown = function() {
+//             robo('Green', 1)
+//         }
+//         BTN.onmouseup = function() {
+//             robo('Green')
+//         }
+//This above code is for JavaScript light change 
+    
