@@ -6,7 +6,8 @@ function ajax(Link) {
             console.log(x.A);
         }
     };
-    xhttp.open('GET', Link, true);
+    console.log('http://10.1.12.19' + Link);
+    xhttp.open('GET', 'http://10.1.12.19' + Link, true);
     xhttp.send();
 }
 
@@ -14,7 +15,7 @@ let green = false;
 let blue = false;
 let red = false;
 
-function robo(booyah) {
+function robo(booyah, on) {
     console.log(booyah);
     switch (booyah) {
         case 'Forward':
@@ -34,15 +35,15 @@ function robo(booyah) {
             break;
         case 'Green':
           green = !green;
-          ajax('/light/green/'+ (green ? 'on' : 'off'));
+          ajax('/light/green/'+ (on ? 'on' : 'off'));
           break;
         case 'Blue':
           blue = !blue;
-          ajax('/light/blue/'+ (blue ? 'on' : 'off'));
+          ajax('/light/blue/'+ (on ? 'on' : 'off'));
           break;
         case  'Red':
           red = !red;
-          ajax('/light/red/'+ (red ? 'on' : 'off'));
+          ajax('/light/red/'+ (on ? 'on' : 'off'));
         break;
     }
 };
