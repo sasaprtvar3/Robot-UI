@@ -46,28 +46,3 @@ function robo(booyah) {
         break;
     }
 };
-
-// function goFoward() {
-//     ajax('/moveBackward');
-//     console.log('Go Forward!');
-// }
-
-// function goBack() {
-//     ajax('/moveBackward');
-//     console.log('Go Back!');
-// }
-
-// function turnRight() {
-//     ajax('/moveBackward');
-//     console.log('Turn Right!');
-// }
-
-// function turnLeft() {
-//     ajax('/moveBackward');
-//     console.log('Turn Left!');
-// }
-
-// function stop() {
-//     ajax('/moveBackward');
-//     console.log('Stop!');
-// }
