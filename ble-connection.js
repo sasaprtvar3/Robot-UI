@@ -1,59 +1,116 @@
-/**
- * Created by Elijah McClendon on 5/17/17.
- */
-var noble = require('noble');
 
-noble.on('stateChange', function(state) {
-  if (state === 'poweredOn') {
-    noble.startScanning();
-  } else {
-    noble.stopScanning();
+let noble = require('noble');
+
+export default class BT {
+  constructor(){
+    this.nobleState = false;
+    this.connected = false;
+    this.peripheral = {};
+    this.char = undefined;
+    this.id = '7ea8eb7239f64713831524a58aae8df5';
   }
-});
 
-noble.on('discover', function(peripheral) {
-  console.log('peripheral discovered (' + peripheral.id +
-      ' with address <' + peripheral.address +  ', ' + peripheral.addressType + '>,' +
-      ' connectable ' + peripheral.connectable + ',' +
-      ' RSSI ' + peripheral.rssi + ':');
-  console.log('\thello my local name is:');
-  console.log('\t\t' + peripheral.advertisement.localName);
-  console.log('\tcan I interest you in any of the following advertised services:');
-  console.log('\t\t' + JSON.stringify(peripheral.advertisement.serviceUuids));
-
-  var serviceData = peripheral.advertisement.serviceData;
-  if (serviceData && serviceData.length) {
-    console.log('\there is my service data:');
-    for (var i in serviceData) {
-      console.log('\t\t' + JSON.stringify(serviceData[i].uuid) + ': ' + JSON.stringify(serviceData[i].data.toString('hex')));
+  _checkState(){
+    let vm = this;
+    if(this.nobleState){
+      console.log('checkstate');
+      return Promise.resolve();
     }
-  }
-  if (peripheral.advertisement.manufacturerData) {
-    console.log('\there is my manufacturer data:');
-    console.log('\t\t' + JSON.stringify(peripheral.advertisement.manufacturerData.toString('hex')));
-  }
-  if (peripheral.advertisement.txPowerLevel !== undefined) {
-    console.log('\tmy TX power level is:');
-    console.log('\t\t' + peripheral.advertisement.txPowerLevel);
+    return new Promise ((resolve, reject) => {
+
+      noble.on('stateChange', function(state) {
+        if (state === 'poweredOn') {
+          noble.startScanning();
+          vm.nobleState = true;
+          resolve('poweredOn');
+        } else {
+          noble.stopScanning();
+          resolve('not poweredOn');
+        }
+      })
+    });
   }
 
-  if (peripheral.id === 'adddd106ea4b44119f8453ac1b655043'){
-    noble.stopScanning();
-
-    console.log('hey hey');
-    var p = peripheral;
-
-    p.connect(function(err){
-      // console.log(err);
-      // console.log('hey we made it');
-      p.discoverServices([],  function(err, ser){
-        console.log(err);
-        console.log(ser);
+  conn(id){
+    console.log('conn');
+    if(this.connected){
+      return Promise.resolve();
+    }
+    return this._checkState().then(() =>{
+      return new Promise ((resolve, reject) => {
+        noble.on('discover', (peripheral) => {
+          console.log('conn1', id);
+          if (peripheral.id === id ){
+            console.log('conn1');
+            noble.stopScanning();
+            this.peripheral = peripheral;
+            this.peripheral.connect((err) => {
+              //put error in
+              this.connected = true;
+              resolve(console.log('connected to ' + id))
+            });
+          }
+          console.log();
+        });
       });
     });
   }
 
+  disconn(){
+    return this._checkState().then((id) => {
+      return new Promise ((resolve, reject) => {
+        this.peripheral = peripheral;
+        this.peripheral.connect((err) => {
+          if(err){return reject(err)}
+          resolve(console.log('disconnecting from ' + id))
+        });
+        console.log();
+      });
+    });
+  }
 
-  console.log();
-});
+  send(color) {
+    console.log('here', this);
+    let vm = this;
+    if (this.char) {
+      return new Promise((resolve, reject) => {
+        vm.char.discoverCharacteristics(['FF01'], (error, char) => {
+          console.log('here2');
+          let blueOff = Buffer.from(color, 'UTF-8');
+          console.log(blueOff);
+          char[0].write(blueOff, false);
+          resolve();
+        });
+      });
+    }
+
+    return this._checkState().then(() => {
+      console.log('Sasa');
+      return new Promise((resolve, reject) => {
+        vm.peripheral.discoverServices(['00FF'], (err, ser) => {
+          console.log('here6');
+          let ff01 = 'ff01';
+
+          vm.char = ser[0];
+          console.log(ser[0]);
+          vm.char.discoverCharacteristics(['FF01'], (error, char) => {
+
+            let blueOff = Buffer.from(color, 'UTF-8');
+            console.log(blueOff.toString(), 'someText');
+            char[0].write(blueOff, false);
+            resolve();
+          });
+        });
+      });
+    });
+  }
+}
+
+
+// let bt = new BT;
+// bt.conn('7ea8eb7239f64713831524a58aae8df5').then(() => {
+//   bt.send('MF');
+// });
+
+
 

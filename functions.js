@@ -14,19 +14,19 @@ function robo(booyah) {
     console.log(booyah);
     switch (booyah) {
         case 'Forward':
-            ajax('/moveBackward');
+            ajax('/moveForward');
             break;
         case 'Back':
-            ajax('/moveBackward');
+            ajax('/moveBackwards');
             break;
         case 'Right':
-            ajax('/moveBackward');
+            ajax('/turnRight');
             break;
         case 'Left':
-            ajax('/moveBackward');
+            ajax('/turnLeft');
             break;
         case 'Stop':
-            ajax('/moveBackward');
+            ajax('/stopMovement');
             break;
     }
 };

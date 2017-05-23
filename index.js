@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const control = require('./control.js');
 const noble = require('noble');
+const controls = new control();
 
 
 app.get('/', function (req, res) {
@@ -12,9 +13,8 @@ app.use(express.static(__dirname));
 /**
  * when moveBackward is accessed from the URL the robot will move backwards
  */
-app.get('/moveBackwards', function (req, res){  //express get request
-
-    let controls = new control;       //grabs the control library
+app.get('/moveBackward', function (req, res){  //express get request
+  
     let p = controls.moveBackward();  //calls the moveBackward method in controls
     p.then((successMessage) => {      //executes the promise returned from moveBackward
         console.log(successMessage);  //successMessage contains the succesfully resolved promise
@@ -26,8 +26,7 @@ app.get('/moveBackwards', function (req, res){  //express get request
 });
 
 app.get('/moveForward', function (req, res){
-
-    let controls = new control;
+  
     let p = controls.moveForward();
     p.then((successMessage) => {
         console.log(successMessage);
@@ -39,8 +38,7 @@ app.get('/moveForward', function (req, res){
 });
 
 app.get('/turnLeft', function (req, res){
-
-    let controls = new control;
+  
     let p = controls.turnLeft();
     p.then((successMessage) => {
         console.log(successMessage);
@@ -52,8 +50,8 @@ app.get('/turnLeft', function (req, res){
 
 app.get('/turnRight', function (req, res){
 
-    let controls = new control;
-    p = controls.turnRight();
+    
+    let p = controls.turnRight();
     p.then((successMessage) => {
         console.log(successMessage);
         res.send({ status:0, action: 'turns right'});
@@ -65,8 +63,7 @@ app.get('/turnRight', function (req, res){
 
 app.get('/stopMovement', function (req, res){
 
-    let controls = new control;
-    p = controls.stopMovement();
+    let p = controls.stopMovement();
     p.then((successMessage) => {
         console.log(successMessage);
         res.send({ status:0, action: 'stops movement'});
@@ -75,6 +72,55 @@ app.get('/stopMovement', function (req, res){
         throw "stop movement promise error";
     })
 });
+
+app.get('/light/green/on', function (req, res){  //express get request
+
+  let p = controls.light('G', 1);  //calls the moveBackward method in controls
+  p.then((successMessage) => {      //executes the promise returned from moveBackward
+    console.log(successMessage);  //successMessage contains the succesfully resolved promise
+    res.send({ status:0, action: 'green light on'});  // sends a JSON object to the html
+
+  }).catch((error) => {   // if the promise fails it calls this function
+    throw 'move backwards promise failed';  // throws an exception
+  })
+});
+
+app.get('/light/green/off', function (req, res){  //express get request
+
+  let p = controls.light('G', 0);  //calls the moveBackward method in controls
+  p.then((successMessage) => {      //executes the promise returned from moveBackward
+    console.log(successMessage);  //successMessage contains the succesfully resolved promise
+    res.send({ status:0, action: 'move backwards'});  // sends a JSON object to the html
+
+  }).catch((error) => {   // if the promise fails it calls this function
+    throw 'move backwards promise failed';  // throws an exception
+  })
+});
+
+app.get('/light/blue/on', function (req, res){  //express get request
+
+  let p = controls.light('B', 0);  //calls the moveBackward method in controls
+  p.then((successMessage) => {      //executes the promise returned from moveBackward
+    console.log(successMessage);  //successMessage contains the succesfully resolved promise
+    res.send({ status:0, action: 'move backwards'});  // sends a JSON object to the html
+
+  }).catch((error) => {   // if the promise fails it calls this function
+    throw 'move backwards promise failed';  // throws an exception
+  })
+});
+
+app.get('/light/blue/off', function (req, res){  //express get request
+
+  let p = controls.light('B', 0);  //calls the moveBackward method in controls
+  p.then((successMessage) => {      //executes the promise returned from moveBackward
+    console.log(successMessage);  //successMessage contains the succesfully resolved promise
+    res.send({ status:0, action: 'move backwards'});  // sends a JSON object to the html
+
+  }).catch((error) => {   // if the promise fails it calls this function
+    throw 'move backwards promise failed';  // throws an exception
+  })
+});
+
 
 /**
  * listens on localhost:3000 
